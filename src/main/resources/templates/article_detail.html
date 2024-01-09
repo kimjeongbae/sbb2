@@ -9,11 +9,20 @@
                     <div th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
-            <div class="my-3">
-                <a th:href="@{|/article/modify/${question.id}|}" class="btn btn-sm btn-outline-secondary"
-                   sec:authorize="isAuthenticated()"
-                   th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
-                   th:text="수정"></a>
+                <div class="my-3">
+                    <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-sm btn-outline-secondary"
+                       th:text="수정"></a>
+
+                    <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-sm btn-outline-secondary"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+                       th:text="수정"></a>
+
+                    <a th:href="@{|/article/delete/${article.id}|}" class="btn btn-sm btn-outline-secondary"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+                       th:text="삭제"></a>
+            </div>
         </div>
     </div>
     <a th:href="@{/article/list}" type="submit" class="btn btn-primary my-2"> 목록</a>

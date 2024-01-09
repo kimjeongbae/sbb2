@@ -1,5 +1,6 @@
 package com.example.sbb2.article;
 
+import com.example.sbb2.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,11 @@ public class ArticleService {
 
 
 
-    public void create (String subject, String content){
+    public void create (String subject, String content, User author){
         Article a = new Article();
         a.setSubject(subject);
         a.setContent(content);
+        a.setAuthor(author);
         a.setCreateDate(LocalDateTime.now());
         this.articleRepository.save(a);
     }
@@ -39,5 +41,9 @@ public class ArticleService {
         article.setContent(content);
         article.setModifyDate(LocalDateTime.now());
         this.articleRepository.save(article);
+    }
+
+    public void delete(Article article) {
+        this.articleRepository.delete(article);
     }
 }
