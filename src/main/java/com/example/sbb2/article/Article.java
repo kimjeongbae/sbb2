@@ -1,5 +1,6 @@
 package com.example.sbb2.article;
 
+import com.example.sbb2.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,4 +20,8 @@ public class Article {
     @Column(columnDefinition = "TEXT")
     private String content;
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+
+    @ManyToOne
+    private User author;
 }
